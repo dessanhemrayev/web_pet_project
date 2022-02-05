@@ -37,19 +37,19 @@ if(a.length<5 || a.length>25)
 <span class="log1">
 <span class="" aria-hidden="true"></span> &nbsp;&nbsp;&nbsp;&nbsp;
 </span> 
-<a href="../induv_zadaniye/admin/admin.html" class="fa fa-user-circle">Администратор</a>
+<a href="../index.html" class="fa fa-sign-out">Выйти</a>
 </span>
 </div>
 <div class="container">
   <div class="frame">
     <div class="nav">
-      <ul class="links">
-        <li class="signin-active"><a class="btn">Авторизация</a></li>
-        <li class="signup-inactive"><a class="btn">Регистрация </a></li>
-      </ul>
+     
+        <li class="signin-active"><a class="btn">Администратор</a></li>
+       
+     
     </div>
     <div ng-app ng-init="checked = false">
-				  <form class="form-signin" action="/induv_zadaniye/sign.php" method="post" name="form">
+				  <form class="form-signin" action="/induv_zadaniye/admin/sign.php" method="post" name="form">
           <label for="username">Логин</label>
           <input class="form-styling" type="text" name="name" placeholder=""/>
           <label for="password">Пароль</label>
@@ -59,19 +59,7 @@ if(a.length<5 || a.length>25)
         </div>
 				        </form>
         
-				        <form class="form-signup" name="form"action="/induv_zadaniye/add.php" onSubmit="return validateForm()" method="post" >
-          <label for="fullname">Логин</label>
-          <input class="form-styling" type="text" name="login" placeholder=""/>
-          <label for="email">Email</label>
-          <input class="form-styling" type="text" name="email" placeholder=""/>
-          <label for="password">Пароль</label>
-          <input class="form-styling" type="password" name="xpassword" placeholder=""/>
-          <label for="confirmpassword">Повторите пароль</label>
-          <input class="form-styling" type="password" name="confirmpassword" placeholder=""/>
-          <div class="form-group"> 
-        <button type="submit" method="post"class="btn-signup" id="add" >Регистрация</button>
-        </div>
-				        </form>
+				      
       
        
       </div>

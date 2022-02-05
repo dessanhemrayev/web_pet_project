@@ -1,0 +1,75 @@
+.bg-red{
+    background-color: #ffcacc;
+}
+
+.bg-gr{
+    background-color: #9bff99;
+}
+
+.radio-img{
+    margin: -5px 5px 0 2px;
+}
+
+.my-bgr{
+    background-color: #fffcba;
+}
+.btn{
+    margin-top:20px;
+    margin-bottom:20px;
+
+}
+
+
+form {
+  padding: 30px;
+  font-family: Arial;
+}
+
+h1 {
+  font-size: 1em;
+  color: #006595;
+  padding: 15px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 white;
+}
+
+input {
+  width: 250px;
+  padding: 5px;
+  border: solid 1px #CCC;
+  outline: none;
+  border-radius: 7px;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.05);
+  border-right-color: #EEE;
+  border-bottom-color: #EEE;
+  color: #006595;
+}
+
+.form-item {
+  position: relative;
+  padding: 5px;
+}
+
+/* show hints when hover/focus the input */
+.form-item:hover .hint,
+input:focus ~ div{
+  opacity: 1;
+}
+
+/* hidden by default */
+.hint {
+  content: "asd";
+  opacity: 0;
+  background: #EEE;
+  position: absolute;
+  top: 1px;
+  left: 269px;
+  padding: 2px;
+  border: solid 1px #CCC;
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+  border-radius:7px 7px  7px 7px;
+  transition: opacity 0.3s;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.05);
+}

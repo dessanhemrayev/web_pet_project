@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Dessan Hemrayev">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1,shrink-to-fit=no">
+	<title>База данных</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	 <link href="bootstrap.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+<style type="text/css">
+	#overlay{
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background:rgba(0,0,0,0.6);
+	}
+</style>
+<script src="vue.js"></script>
+    <script src="jquery.js"></script>
+
+
+
+
+
+
+
+<script src="vue.js"></script>
+    <script src="jquery.js"></script>
+
+</head>
+<body>
+	<div id="app">
+		<div class="container-fluid">
+
+			<div class="row bg-dark">
+				<div class="col-lg-12">
+					<p class="text-center text-light display-4 pt-2" style="font-size: 25px;">Мечты сбываются</p>
+				</div>
+			</div>
+		</div>
+
+	
+		<div class="container ">
+			<div class="row mt-3">
+				<div class="col-lg-12 text-center">
+					<h3 class="text-info">Система выдачи горящих путевок для студентов ЮЗГУ</h3>
+				</div>
+				
+
+			</div>
+			<hr class="bg-info">
+			<div class="alert alert-danger" v-if="errorMsg">
+				{{errorMsg}}
+			</div>
+			<div class="alert alert-info" v-if="succesMsg">
+				{{succesMsg}}
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<table class="table table-dark table-bordered">
+						<thead>
+							<tr class="text-center bg-dark text-light">
+							<th>#</th>
+							<th>Место отдыха</th>
+                    		<th>Дней</th>
+                    		<th>Стоимость</th>
+                    		<th>ФИО</th>
+							<th >Освободить</th>
+							<th >Удалить</th>
+						</tr>
+						</thead>
+						<tbody>
+							<tr class="text-center" v-for="(item,index) in users">
+								<td>{{index+1}}</td>
+								<td>{{item.location}}</td>
+								<td>{{item.day}}</td>
+								<td>{{item.money}} руб</td>
+								<td>{{item.user}}</td>
+								<td><a href="#" class="text-succes" @click="showEditModal=true;selectUser(item);"> <i class="fas fa-edit"></i></a></td>
+								<td><a href="#" class="text-danger" @click="showDeleteModal=true;selectUser(item)"> <i class="fas fa-trash-alt"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		
+		<div>
+			<div>
+				 <form style="padding: 0px;"action="#" onSubmit="return validateForm()" method="post">
+			<div class='row' >
+            	<div class='col-md-6' >
+                	
+              
+                <h5>Новая запись:</h5>
+                 <div class="form-item">
+   				Расположение
+                <input type="text" class='form-control'  id="location" 
+                name="location" title="Введите названия место куда вы хотите отправится отдыхать" v-model="newUser.location">
+				<div class="hint">Введите место отдыха куда вы хотите поехать </div>
+  				</div>
+				
+				<div class="form-item">
+   				  Продолжительность, дней
+                <input class='form-control'  id="day" name="day"title="Введите сколько дней вы хотите отдыхать"v-model="newUser.day">
+				<div class="hint">Введите сколько дней вы хотите отдыхать</div>
+  				</div>
+  				
+  				 <div class="form-item">
+   			 Стоимость, руб
+                <input class='form-control'  id="money" name="money" title="Сколько денег потребуется для отдыха" v-model="newUser.money"
+                >
+                <div class="hint">Сколько денег потребуется для отдыха </div>
+  				</div>
+  			
+  			<div class=form-item>
+  				 	
+   				  Обладатель путевки
+                <input class=form-control   id=user name=user title=Ваше ФИО v-model=newUser.user>
+
+                <div class=hint>Ваше ФИО </div>
+             
+  				</div> 
+</form> 
+ 				<div class="form-item">
+   				              <button class="btn btn-success float-right" style="margin: 0" @click="addUser()">
+						<i class="fas fa-user" ></i>&nbsp;&nbsp;Add New User
+					</button>
+  				</div>
+  				
+            </div>
+
+ <div class='col-md-6'>
+ 	<div class='row' >
+			<form style="padding: 0px; width: 450px;"action="#" onSubmit="return validateForm2()" method="post">
+	
+                <h5>Покупка горящей путевки:</h5>
+               
+	<div class=form-item>
+  				 	
+   				 Введите ФИО
+                <input class=form-control   id=user2 name=user2 title=Ваше ФИО v-model=buyplace.user               >
+
+                <div class=hint>Ваше ФИО </div>
+             
+  				</div> 
+
+
+
+
+					<div class="form-item">
+   				Выберите путевку:
+                <select class='form-control'  id='place2' v-model="buyplace.location">
+                    <option disabled value="" selected>Выберите один из вариантов</option>
+                    
+                <option v-for="item in places" >
+                        {{item.location}}</option> </select>
+ 				<div class="hint">Место отдыха куда вы хотите поехать</div>
+ 				</form>
+ 			<br>
+
+ 				<button class='btn btn-warning float-right' style="margin: 0" @click="buyUser();" ><i class="far fa-money-bill-alt"></i>Купить</button>
+          </div> 
+               </div>
+  				
+  				
+								
+
+
+</div>
+
+
+<!-- Диалоговые окны -->
+<!-- кнопка удалить -->
+<div id="overlay" v-if="showDeleteModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-center">Удалить					
+				</h5>
+				<button type="button" class="close bg-danger" @click="showDeleteModal=false"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body p-4">
+				<h4 class="text-danger">
+					Вы дейстивительно хотите удалить эту путевку?
+				</h4>
+				<h5>Вы хотите удалить путевку на {{currentUser.location}}</h5>
+				<button class="btn btn-info btn-md float-right" style="margin: 0" @click="showDeleteModal=false;" >Нет</button>
+				<button class="btn btn-danger btn-md float-right" style="margin: 0"@click="showDeleteModal=false;deleteUser()">Да</button>
+				
+			</div>			
+		</div>
+	</div>
+</div>
+
+<!-- кнопка Изменить -->
+<div id="overlay" v-if="showEditModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header ">
+				<h5 class=" modal-title text-center ">Освободить путевку					
+				</h5>
+				
+				<button type="button" class="close" @click="showEditModal=false"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body p-4">
+				<h4>
+					Вы уверены?
+				</h4>
+				<h5>Вы хотите освободить путевку на {{currentUser.location}}</h5>
+				<hr>
+				<form action="#" onSubmit="" method="post">
+			<div class='row' >
+            	
+                Расположение
+                <input type="text" class='form-control' name="location3" v-model="currentUser.location">
+				 Продолжительность, дней
+                <input class='form-control' name="day3" v-model="currentUser.day">
+				  				
+  				
+   			 	Стоимость, руб
+                <input class='form-control'  name="money3" v-model="currentUser.money"
+                >
+               Обладатель путевки
+                <input class='form-control ' name="user3"  v-model="currentUser.user">
+                
+  			</div>
+</form> 
+				<button class="btn btn-info btn-md float-right" style="margin: 0"@click="showEditModal=false" >Нет</button>
+				<button type="submit" class="btn btn-danger btn-md float-right" style="margin: 0" @click="editUser();showEditModal=false;">Да</button>
+				
+			</div>			
+		</div>
+	</div>
+</div>
+</div>	
+	
+	<script >
+		$(document).ready(function() {
+    		$("#day,#money").keydown(function(event) {
+        // Разрешаем: backspace, delete, tab и escape
+        if ( event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || 
+             // Разрешаем: Ctrl+A
+            (event.keyCode == 65 && event.ctrlKey === true) || 
+             // Разрешаем: home, end, влево, вправо
+            (event.keyCode >= 35 && event.keyCode <= 39)) {
+                 // Ничего не делаем
+                 return;
+        }
+        else {
+            // Обеждаемся, что это цифра, и останавливаем событие keypress
+            if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105 )) {
+                event.preventDefault(); 
+            }   
+        }
+    });
+});
+
+		
+	</script>
+	<script >
+
+function validateForm() {
+
+  var mesto=document.getElementById('location').value;
+  var days=document.getElementById('day').value;
+  var money=document.getElementById('money').value;
+  
+  if(mesto=='' || days=='' || money==""){
+         alert("Вы ввели не всю информацию, вернитесь назад и заполните все поля! ");
+ 
+    
+return false;}
+
+
+ }
+</script>
+
+<script >
+
+function validateForm2() {
+
+  var mesto=document.getElementById('place2').value;
+  var user=document.getElementById('user2').value;
+ 
+  
+  if(mesto=='' || user==''){
+         alert("Вы ввели не всю информацию, вернитесь назад и заполните все поля! ");
+ 
+    
+return false;}
+
+
+ }
+</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+	var app=new Vue({
+	el:'#app',
+	data:{
+		errorMsg:"",
+		succesMsg:"",
+		showDeleteModal:false,
+		showEditModal:false,
+		users:[],
+		places:[],
+		buyplace:{user:"",location:""},
+		newUser:{location:"",day:"",money:"",user:""},
+		currentUser:{}
+	},
+	mounted:function () {
+		
+		this.getAllUsers();
+		this.selectlocation();
+	},
+	methods:{
+		getAllUsers(){
+			axios.get("http://localhost/induv_zadaniye/admin/process.php?action=read").then(function(response){ 
+								if(response.data.error){
+					app.errorMsg=response.data.message;
+				}
+				else{
+					app.users=response.data.users;
+				}
+				
+			});
+			
+		},
+		addUser(){
+			var formData=app.toFormData(app.newUser);
+			axios.post("http://localhost/induv_zadaniye/admin/process.php?action=create",formData).then(function(response){ 
+				app.newUser={location:"",day:"",money:"",user:""};
+				if(response.data.error){
+					app.errorMsg=response.data.message;
+				}
+				else{
+					app.succesMsg=response.data.message;
+					app.getAllUsers();
+					app.selectlocation();
+				}
+			});
+		},
+		toFormData(obj){
+			var fd=new FormData();
+			for(var i in obj){
+				fd.append(i,obj[i]);
+			}
+			return fd;
+		},
+		selectUser(item){
+			app.currentUser=item;
+		},
+		selectlocation(){axios.get("http://localhost/induv_zadaniye/admin/process.php?action=find").then(function(response){ 
+								if(response.data.error){
+					app.errorMsg=response.data.message;
+				}
+				else{
+					app.places=response.data.places;
+				}
+				
+			});
+			
+			
+		},
+		editUser(){
+				var formData=app.toFormData(app.currentUser);
+			axios.post("http://localhost/induv_zadaniye/admin/process.php?action=update",formData).then(function(response){ 
+				app.currentUser={};
+				if(response.data.error){
+					app.errorMsg=response.data.message;
+				}
+				else{
+					app.succesMsg=response.data.message;
+					app.getAllUsers();
+					app.selectlocation();
+				}
+			});
+	},
+	buyUser(){
+				var formData=app.toFormData(app.buyplace);
+			axios.post("http://localhost/induv_zadaniye/admin/process.php?action=buy",formData).then(function(response){ 
+				app.buyplace={user:"",location:""};
+				if(response.data.error){
+					app.errorMsg=response.data.message;
+				}
+				else{
+					app.succesMsg=response.data.message;
+					app.getAllUsers();
+					app.selectlocation();
+				}
+			});
+	},
+	deleteUser(){
+				var formData=app.toFormData(app.currentUser);
+			axios.post("http://localhost/induv_zadaniye/admin/process.php?action=delete",formData).then(function(response){ 
+				app.currentUser={};
+				if(response.data.error){
+					app.errorMsg=response.data.message;
+				}
+				else{
+					app.succesMsg=response.data.message;
+					app.getAllUsers();
+					app.selectlocation();
+				}
+			});
+	}
+
+		}
+});
+
+
+ </script>
+
+</body>
+</html>
